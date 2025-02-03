@@ -30,18 +30,19 @@ class BlockAppScreen(private val storage: DeviceStatusStorage) : Screen {
         var isBlocked by remember { mutableStateOf(true) }
         var unlockCode by remember { mutableStateOf("") }
         val coroutineScope = rememberCoroutineScope()
-        val socketManager = SocketManager(coroutineScope) // Instancia de SocketManager
-        socketManager.initSocket("https://matrixcell.onrender.com", imei) // Iniciar socket con los parámetros
-        val deviceRepository = DeviceRepository(socketManager) // Pasar la instancia de SocketManager al repository
+        val socketManager = SocketManager(coroutineScope)
+        socketManager.initSocket("https://matrixcell.onrender.com", imei)
+        val deviceRepository = DeviceRepository(socketManager)
         var unlockRequestViewModel = UnlockRequestViewModel(deviceRepository)
-        // Recuperar el estado almacenado localmente al iniciar
+        var supportNumber by remember { mutableStateOf("") }
+        var paymentInfo by remember { mutableStateOf("") }
+
         LaunchedEffect(Unit) {
             coroutineScope.launch {
                 isBlocked = storage.getDeviceStatus()
             }
         }
 
-        // Mostrar la interfaz basada en el estado del dispositivo
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -56,7 +57,6 @@ class BlockAppScreen(private val storage: DeviceStatusStorage) : Screen {
             Spacer(modifier = Modifier.height(16.dp))
 
             if (isBlocked) {
-                // Campo para el código de desbloqueo
                 OutlinedTextField(
                     value = unlockCode,
                     onValueChange = { unlockCode = it },
@@ -65,10 +65,9 @@ class BlockAppScreen(private val storage: DeviceStatusStorage) : Screen {
                 )
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Botón para desbloquear
                 Button(
                     onClick = {
-                       unlockRequestViewModel.handleValidationSubmit(unlockCode,imei,navigator)
+                       unlockRequestViewModel.handleValidationSubmit(unlockCode, imei, navigator)
                     },
                     modifier = Modifier.fillMaxWidth()
                 ) {
@@ -76,7 +75,6 @@ class BlockAppScreen(private val storage: DeviceStatusStorage) : Screen {
                 }
                 Spacer(modifier = Modifier.height(20.dp))
 
-                // Mensaje de pagos
                 Text(
                     text = "Por favor ponte al corriente con los pagos para poder desbloquearlo",
                     fontSize = 18.sp,
@@ -84,7 +82,6 @@ class BlockAppScreen(private val storage: DeviceStatusStorage) : Screen {
                 )
                 Spacer(modifier = Modifier.height(20.dp))
 
-                // Botón para verificar conexión a internet
                 Button(
                     onClick = {
                         DeviceManager().checkInternetConnection()
@@ -96,10 +93,9 @@ class BlockAppScreen(private val storage: DeviceStatusStorage) : Screen {
                     Text("Datos/WiFi")
                 }
 
-                // Botón para ir a la pantalla de pagos
                 Button(
                     onClick = {
-                        DeviceManager().navigateToPayments()
+                        paymentInfo = "Ir a la pantalla de pagos: https://matrix-cell.com/payments"
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -107,11 +103,11 @@ class BlockAppScreen(private val storage: DeviceStatusStorage) : Screen {
                 ) {
                     Text("Ir a la pantalla de pagos")
                 }
+                Text(paymentInfo, fontSize = 16.sp)
 
-                // Botón para llamar a soporte técnico
                 Button(
                     onClick = {
-                        DeviceManager().callSupport()
+                        supportNumber = "Soporte Técnico: +593987808614"
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -119,6 +115,7 @@ class BlockAppScreen(private val storage: DeviceStatusStorage) : Screen {
                 ) {
                     Text("Llamar a soporte")
                 }
+                Text(supportNumber, fontSize = 16.sp)
             } else {
                 Text("El dispositivo está desbloqueado", fontSize = 18.sp)
             }
