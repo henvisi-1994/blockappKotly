@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device-admin>
+    <uses-policies>
+        <!-- Habilitar las políticas necesarias para el kiosco -->
+        <limit-password />
+        <wipe-data />
+        <force-lock />
+        <reset-password />
+        <set-global-proxy />
+        <set-time-zone />
+        <install-package />
+        <uninstall-package />
+    </uses-policies>
+</device-admin>

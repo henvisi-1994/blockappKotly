@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/statusTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dispositivo Bloqueado"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/unlockCodeInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Código de Desbloqueo"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/unlockButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Desbloquear"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/paymentInfoTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Por favor ponte al corriente con los pagos para poder desbloquearlo"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/dataWifiButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Datos/WiFi"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/paymentScreenButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ir a la pantalla de pagos"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/paymentScreenInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="16sp"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/supportButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Llamar a soporte"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/supportInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="16sp"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

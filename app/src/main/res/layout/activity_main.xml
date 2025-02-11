@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/androidIdTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Android ID: " />
+
+        <EditText
+            android:id="@+id/codigoIdInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Código ID"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/voucherPagoInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Voucher de Pago"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enviar Solicitud" />
+    </LinearLayout>
+</ScrollView>
